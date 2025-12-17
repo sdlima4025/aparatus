@@ -10,6 +10,7 @@ import {
   PageSectionScroller,
   PageSectionTitle,
 } from "@/components/ui/page.js";
+import Footer from "@/components/ui/footer.js";
 
 // Server Component
 export default async function Home() {
