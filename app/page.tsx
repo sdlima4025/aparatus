@@ -2,34 +2,52 @@ import Header from "@/components/header";
 import Image from "next/image";
 import banner from "@/public/banner.png";
 import BookingItem from "@/components/ui/booking-item";
-import { getBarbershops } from "@/data/barbershops.js";
+import { getBarbershops, getPopularBarbershops } from "@/data/barbershops.js";
+import BarbershopItem from "@/components/ui/barbershop-item.js";
+import {
+  PageContainer,
+  PageSectionContent,
+  PageSectionScroller,
+  PageSectionTitle,
+} from "@/components/ui/page.js";
 
 // Server Component
 export default async function Home() {
- const barbershops = await getBarbershops();
+  const barbershops = await getBarbershops();
+  const popularBarbershops = await getPopularBarbershops();
 
   return (
     <div>
       <Header />
-      <div className="px-4">
+      <PageContainer>
         <Image
           src={banner}
           alt="Agende nos melhores com a Aparatus"
           sizes="100vw"
           className="h-auto w-full"
         />
-      </div>
-      <div className="mt-4 space-y-4 px-4">
-        <h3 className="text-xs font-bold uppercase">Agendamentos</h3>
-        <BookingItem />
-      </div>
-          {barbershops.map((barbershop) => (
-            <div key={barbershop.id}>
-              <p className="text-xs font-bold uppercase">{barbershop.name}</p>
-            </div>
-          ))}
-      </div>
+        <PageSectionContent>
+          {/* composition Pattern */}
+          <PageSectionTitle>Próximos Agendamentos</PageSectionTitle>
+          <BookingItem />
+        </PageSectionContent>
+        <PageSectionContent>
+          <PageSectionTitle>Barbearia</PageSectionTitle>
+          <PageSectionScroller>
+            {barbershops.map((barbershop) => (
+              <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+            ))}
+          </PageSectionScroller>
+        </PageSectionContent>
+        <PageSectionContent>
+          <PageSectionTitle>Barbearia Populares</PageSectionTitle>
+          <PageSectionScroller>
+            {barbershops.map((barbershop) => (
+              <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+            ))}
+          </PageSectionScroller>
+        </PageSectionContent>
+      </PageContainer>
+    </div>
   );
 }
-
-
