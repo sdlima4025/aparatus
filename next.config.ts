@@ -1,6 +1,6 @@
-import type { NextConfig } from "next";
+import type * as next from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig: next.NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [
