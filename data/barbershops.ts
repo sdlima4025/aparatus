@@ -1,3 +1,4 @@
+// Data Acces Layer
 import { prisma } from "@/lib/prisma.js";
 
 export const getBarbershops = async () => {
