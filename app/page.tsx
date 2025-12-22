@@ -13,6 +13,7 @@ import {
 import Footer from "@/components/ui/footer.js";
 import QuickSearche from "@/components/ui/quick-searche.js";
 
+
 // Server Component
 export default async function Home() {
   const barbershops = await getBarbershops();
@@ -22,6 +23,7 @@ export default async function Home() {
     <div>
       <Header />
       <PageContainer>
+      
       <QuickSearche/>
         <Image
           src={banner}
